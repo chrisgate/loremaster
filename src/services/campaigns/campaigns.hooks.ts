@@ -1,17 +1,19 @@
-import * as authentication from '@feathersjs/authentication';
+import * as authentication from "@feathersjs/authentication";
+import validateCampaignOwner from "../../hooks/validate-campaign-owner";
+import getAllCampaignEntities from '../../hooks/get-all-campaign-entities';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;
 
 export default {
   before: {
-    all: [ authenticate('jwt') ],
-    find: [],
-    get: [],
+    all: [authenticate("jwt"), validateCampaignOwner()],
+    find: [getAllCampaignEntities()],
+    get: [getAllCampaignEntities()],
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   after: {
@@ -21,7 +23,7 @@ export default {
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -31,6 +33,6 @@ export default {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };

@@ -1,5 +1,5 @@
-import { Service, ObjectionServiceOptions } from 'feathers-objection';
-import { Application } from '../../declarations';
+import { Service, ObjectionServiceOptions } from "feathers-objection";
+import { Application } from "../../declarations";
 
 interface Options extends ObjectionServiceOptions {
   Model: any;
@@ -11,7 +11,7 @@ export class Characters extends Service {
 
     super({
       ...otherOptions,
-      model: Model
+      model: Model,
     });
   }
 }

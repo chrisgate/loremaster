@@ -1,11 +1,12 @@
 import * as authentication from '@feathersjs/authentication';
+import validateCampaignOwner from '../../hooks/validate-campaign-owner';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;
 
 export default {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [authenticate('jwt'), validateCampaignOwner()],
     find: [],
     get: [],
     create: [],
