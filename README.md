@@ -1,45 +1,26 @@
 # loremaster
 
-> 
+## Seed Command
+Running `npm run seed` will create a user via HTTP in feathers and then will run `knex seed` to set up the rest of the data.
 
-## About
-
-This project uses [Feathers](http://feathersjs.com). An open source web framework for building modern real-time applications.
-
-## Getting Started
-
-Getting up and running is as easy as 1, 2, 3.
-
-1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
-2. Install your dependencies
-
-    ```
-    cd path/to/loremaster
-    npm install
-    ```
-
-3. Start your app
-
-    ```
-    npm start
-    ```
-
-## Testing
-
-Simply run `npm test` and all your tests in the `test/` directory will be run.
-
-## Scaffolding
-
-Feathers has a powerful command line interface. Here are a few things it can do:
-
+## Database Docker Compose file
 ```
-$ npm install -g @feathersjs/cli          # Install Feathers CLI
+version: "3.5"
 
-$ feathers generate service               # Generate a new Service
-$ feathers generate hook                  # Generate a new Hook
-$ feathers help                           # Show all commands
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres:
 ```
-
-## Help
-
-For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
