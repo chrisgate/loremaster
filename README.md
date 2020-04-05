@@ -1,5 +1,8 @@
 # loremaster
 
+## Migration
+Running `knex migrate:latest` will perform the migration.
+
 ## Seed Command
 Running `npm run seed` will create a user via HTTP in feathers and then will run `knex seed` to set up the rest of the data.
 
